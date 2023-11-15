@@ -2,8 +2,7 @@ import streamlit as st
 import pandas as pd
 import pickle
 import sklearn
-from sklearn.compose import ColumnTransformer
-from sklearn.preprocessing import OneHotEncoder
+
 
 print(sklearn.__version__)
 # Declaring the teams
@@ -85,22 +84,8 @@ else:
                 requiredrunrate = (runs_left*6)/balls_left
 
                 input_df = pd.DataFrame({'batting_team': [battingteam], 'bowling_team': [bowlingteam], 'city': [city], 'runs_left': [runs_left], 'balls_left': [
-                                        balls_left], 'wickets': [wickets], 'total_runs_x': [target], 'cur_run_rate': [currentrunrate], 'req_run_rate': [requiredrunrate]})
+                                        balls_left], 'wickets_left': [wickets], 'total_runs_x': [target], 'cur_run_rate': [currentrunrate], 'req_run_rate': [requiredrunrate]})
 
-                # st.table(input_df)
-            #     cols_to_transform = ['batting_team','bowling_team','city']
-            #     ct = ColumnTransformer(
-            #     transformers=[
-            #         ('onehot', OneHotEncoder(), cols_to_transform)
-            #     ],
-            #     remainder='passthrough'
-            # )
-                # input_df = pd.get_dummies(input_df, drop_first = True)
-                # st.table(input_df)
-                # encoder = OneHotEncoder()
-                # encoder.fit(input_df)
-                # one_hot_encoded_data = encoder.transform(input_df)
-                # st.table(one_hot_encoded_data)
                 result = pipe.predict_proba(input_df)
                 lossprob = result[0][0]
                 winprob = result[0][1]
