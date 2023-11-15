@@ -1,9 +1,11 @@
 import streamlit as st
 import pandas as pd
 import pickle
+import sklearn
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder
 
+print(sklearn.__version__)
 # Declaring the teams
 
 teams = ['Sunrisers Hyderabad',
